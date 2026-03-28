@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Kafa | Snooker Boards</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific overrides for the realistic boards page */
+        body.boards-page {
+            background-color: #050505;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .dark-room {
+            flex-grow: 1;
+            padding: 100px 5% 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        
+        .dark-room-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            z-index: 2;
+        }
+
+        .dark-room-title h2 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .dark-room-title p {
+            color: #aaaaaa;
+            font-size: 1.1rem;
+        }
+
+        .realistic-boards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+            max-width: 900px;
+            width: 100%;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .realistic-boards-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        .real-table-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            cursor: pointer;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .real-table-wrapper:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.9);
+        }
+
+        .real-table-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: filter 0.4s ease;
+            display: block;
+        }
+
+        .real-table-wrapper:hover .real-table-img {
+            filter: brightness(0.2) blur(3px);
+        }
+
+        .table-label {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            color: #ffffff;
+        }
+
+        .real-table-wrapper:hover .table-label {
+            opacity: 0;
+        }
+
+        .time-slots-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            transform: translateY(20px);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .real-table-wrapper:hover .time-slots-overlay {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .time-slots-overlay h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #ffffff;
+        }
+        
+        .time-slots-overlay .slot {
+            font-size: 0.9rem;
+            padding: 8px 14px;
+            border: 1px solid #ffffff;
+            border-radius: 2px;
+            color: #ffffff;
+            transition: all 0.2s ease;
+            background: rgba(0,0,0,0.5);
+            margin: 4px;
+            display: inline-block;
+        }
+
+        .time-slots-overlay .slot:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        
+        /* Back Button */
+        .back-btn {
+            position: absolute;
+            top: 40px;
+            left: 5%;
+            display: inline-flex;
+            align-items: center;
+            color: #aaaaaa;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.8rem;
+            z-index: 10;
+            transition: color 0.3s ease;
+        }
+        .back-btn span {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+        .back-btn:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body class="boards-page">
+    <a href="index.html" class="back-btn"><span>&larr;</span> Back to Cafe</a>
+    
+    <div class="dark-room">
+        <div class="dark-room-title fade-in-up">
+            <h2>The Snooker Boards</h2>
+            <p>Select a table to reserve your time in our private billiards room.</p>
+        </div>
+
+        <div class="realistic-boards-grid fade-in-up" style="animation-delay: 0.2s;">
+            <!-- Table 1 -->
+            <div class="real-table-wrapper">
+                <img src="snooker_table.png" alt="Realistic rectangular snooker table 1" class="real-table-img">
+                <span class="table-label">Table 1</span>
+                <div class="time-slots-overlay">
+                    <h4>Available Slots</h4>
+                    <div class="time-slots">
+                        <span class="slot">09:00 AM</span>
+                        <span class="slot">11:30 AM</span>
+                        <span class="slot">02:00 PM</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table 2 -->
+            <div class="real-table-wrapper">
+                <img src="snooker_table.png" alt="Realistic rectangular snooker table 2" class="real-table-img" style="transform: rotate(180deg);">
+                <span class="table-label">Table 2</span>
+                <div class="time-slots-overlay">
+                    <h4>Available Slots</h4>
+                    <div class="time-slots">
+                        <span class="slot">10:00 AM</span>
+                        <span class="slot">01:00 PM</span>
+                        <span class="slot">05:00 PM</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table 3 -->
+            <div class="real-table-wrapper">
+                <img src="snooker_table.png" alt="Realistic rectangular snooker table 3" class="real-table-img" style="transform: scaleX(-1);">
+                <span class="table-label">Table 3</span>
+                <div class="time-slots-overlay">
+                    <h4>Available Slots</h4>
+                    <div class="time-slots">
+                        <span class="slot">08:00 AM</span>
+                        <span class="slot">12:30 PM</span>
+                        <span class="slot">06:00 PM</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table 4 -->
+            <div class="real-table-wrapper">
+                <img src="snooker_table.png" alt="Realistic rectangular snooker table 4" class="real-table-img" style="transform: scaleY(-1);">
+                <span class="table-label">Table 4</span>
+                <div class="time-slots-overlay">
+                    <h4>Available Slots</h4>
+                    <div class="time-slots">
+                        <span class="slot">09:30 AM</span>
+                        <span class="slot">02:30 PM</span>
+                        <span class="slot">06:30 PM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
