@@ -416,6 +416,7 @@ a {
 
 .menu-category.active {
     display: flex;
+    align-items: stretch; /* Forces all cards in row to be same height */
     animation: fadeInUp 0.5s ease forwards;
 }
 
@@ -488,7 +489,8 @@ a {
     position: relative;
     cursor: pointer;
     text-align: left;
-    height: 100%;
+    height: auto; /* Lets flex manage height natively */
+    align-self: stretch; /* Fills vertical space */
     min-width: 240px; /* Fixed card width */
     max-width: 240px;
     flex-shrink: 0; /* Prevents card from crushing in the sidescroll */
@@ -522,7 +524,8 @@ a {
     flex-direction: column;
     gap: 0.25rem;
     padding: 0 0.25rem;
-    flex-grow: 1;
+    flex-grow: 1; /* Consumes remaining card space */
+    justify-content: flex-start; /* Correctly packs children to top, leaving margin-top: auto perfectly at bottom */
 }
 
 .info-top {
