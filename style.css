@@ -211,31 +211,46 @@ a {
 /* --- Hero Section --- */
 .hero {
     min-height: 100vh;
-    padding-top: 100px;
+    padding-top: 80px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    gap: 4rem;
     position: relative;
     overflow: hidden;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 .hero-content {
-    text-align: center;
+    text-align: left;
     z-index: 2;
-    padding: 0 5%;
+    flex: 1;
+    padding: 0;
 }
 
 .hero-subtitle {
     font-size: 1.25rem;
     color: var(--text-muted);
     max-width: 600px;
-    margin: 1.5rem auto 2.5rem;
+    margin: 1.5rem 0 2.5rem; /* Aligned left */
 }
 
 .hero-actions {
     display: flex;
     gap: 1rem;
+    justify-content: flex-start;
+}
+
+.hero-image-container {
+    flex: 1;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    max-width: 550px;
+    width: 100%;
 }
 
 /* Soft geometric bg decoration */
@@ -397,14 +412,51 @@ a {
 }
 
 @media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding-top: 120px;
+        gap: 2rem;
+    }
+    .hero-content {
+        text-align: center;
+    }
+    .hero-subtitle {
+        margin: 1.5rem auto 2rem;
+    }
+    .hero-actions {
+        justify-content: center;
+    }
+    .hero-image-container {
+        margin-top: 1rem;
+    }
+
     .menu-tabs {
-        gap: 1.5rem;
+        gap: 1rem;
+        overflow-x: auto; /* Allow side-scrolling for tabs if they get squished */
+        padding-bottom: 0.5rem;
     }
     .tab-btn {
-        font-size: 1.25rem;
+        font-size: 1.1rem;
+        white-space: nowrap;
     }
     .menu-category.active {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem; /* Tighter gap for slim cards */
+    }
+    .menu-item-info .item-name {
+        font-size: 0.9rem;
+    }
+    .info-top {
+        font-size: 0.65rem;
+    }
+    .menu-item-info .item-desc {
+        font-size: 0.75rem;
+    }
+    .category-title {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
     }
 }
 
