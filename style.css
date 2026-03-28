@@ -395,20 +395,28 @@ a {
 
 .menu-category {
     display: none;
-    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
+    padding-bottom: 2rem; /* Give room for slick scrollbar */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+}
+
+.menu-category::-webkit-scrollbar {
+    height: 6px;
+}
+.menu-category::-webkit-scrollbar-track {
+    background: transparent;
+}
+.menu-category::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
 }
 
 .menu-category.active {
-    display: grid;
+    display: flex;
     animation: fadeInUp 0.5s ease forwards;
-}
-
-@media (max-width: 1024px) {
-    .menu-category.active {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.25rem;
-    }
 }
 
 @media (max-width: 768px) {
@@ -442,8 +450,12 @@ a {
         white-space: nowrap;
     }
     .menu-category.active {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem; /* Tighter gap for slim cards */
+        display: flex;
+        gap: 0.75rem; 
+    }
+    .menu-item-wrapper {
+        min-width: 170px; /* Small Netflix-style cards on mobile */
+        max-width: 170px;
     }
     .menu-item-info .item-name {
         font-size: 0.9rem;
@@ -477,6 +489,10 @@ a {
     cursor: pointer;
     text-align: left;
     height: 100%;
+    min-width: 240px; /* Fixed card width */
+    max-width: 240px;
+    flex-shrink: 0; /* Prevents card from crushing in the sidescroll */
+    scroll-snap-align: start; /* Locks perfectly in place on swipe */
 }
 
 .menu-item-wrapper:hover .item-bg {
